@@ -8,6 +8,10 @@
 
 import UIKit
 import GoogleSignIn
+import FacebookCore
+import FBSDKCoreKit
+import FBSDKLoginKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,14 +23,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Initialize sign-in
         GIDSignIn.sharedInstance().clientID = "669505302337-aaf31evri0gas82krn7af50g00hjs3i0.apps.googleusercontent.com"
+        
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
         return true
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url as URL?,
-                                                 sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-                                                 annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+        
+        let google = GIDSignIn.sharedInstance().handle(url as URL?,
+                                                       sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                                                       annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+        
+        let facebook = ApplicationDelegate.shared.application(app, open: url, options: options)
+        
+        return facebook || google
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -25,10 +25,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pn3-3a-CCt">
-                                <rect key="frame" x="60" y="378.5" width="255" height="50"/>
+                                <rect key="frame" x="60" y="517" width="255" height="50"/>
                                 <color key="backgroundColor" red="0.22943970559999999" green="0.34702008960000003" blue="0.59602290390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Gt9-ce-ffi"/>
+                                    <constraint firstAttribute="height" constant="50" id="sRB-Gf-DaE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="    Sign in with Facebook" image="facebookW">
@@ -36,23 +36,23 @@
                                 </state>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wrK-St-edy" customClass="GIDSignInButton">
-                                <rect key="frame" x="60" y="308.5" width="255" height="50"/>
+                                <rect key="frame" x="60" y="206.5" width="255" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="RDm-rJ-2WS"/>
+                                    <constraint firstAttribute="height" constant="50" id="llT-XL-liy"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="pn3-3a-CCt" firstAttribute="top" secondItem="wrK-St-edy" secondAttribute="bottom" constant="20" id="5di-fx-BsF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pn3-3a-CCt" secondAttribute="trailing" constant="60" id="DWg-AW-Fu9"/>
-                            <constraint firstItem="wrK-St-edy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="Dyn-dz-ZZb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pn3-3a-CCt" secondAttribute="trailing" constant="60" id="1iF-bx-OLW"/>
+                            <constraint firstItem="wrK-St-edy" firstAttribute="top" secondItem="p4h-0V-5Tt" secondAttribute="bottom" constant="100" id="HQc-ES-kly"/>
+                            <constraint firstItem="pn3-3a-CCt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="Jbq-Yo-8fE"/>
                             <constraint firstItem="p4h-0V-5Tt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="iy3-6v-F2q"/>
-                            <constraint firstItem="pn3-3a-CCt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="oLr-T6-ohp"/>
+                            <constraint firstItem="wrK-St-edy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="nFI-pX-o7H"/>
                             <constraint firstItem="p4h-0V-5Tt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="phc-RT-fhw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wrK-St-edy" secondAttribute="trailing" constant="60" id="rme-1g-v4C"/>
-                            <constraint firstItem="wrK-St-edy" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zjL-cR-xof"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pn3-3a-CCt" secondAttribute="bottom" constant="100" id="pzl-ep-GUc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wrK-St-edy" secondAttribute="trailing" constant="60" id="ysf-OO-4xC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

@@ -9,8 +9,9 @@
 import Foundation
 
 struct ProfileData {
-    var userId: String?
-    var idToken: String?
+//    var userId: String?
+//    var idToken: String?
+    var system : String?
     var fullName: String?
     var givenName: String?
     var familyName: String?
