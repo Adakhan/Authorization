@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GIDSignIn.sharedInstance().clientID = "669505302337-aaf31evri0gas82krn7af50g00hjs3i0.apps.googleusercontent.com"
         
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
 
         return true
     }
@@ -48,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        let manager = LoginManager()
+        manager.logOut()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

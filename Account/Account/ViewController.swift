@@ -16,30 +16,29 @@ import FBSDKLoginKit
 class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, LoginButtonDelegate {
     
     
-    
-    let fbLoginButton: FBLoginButton = {
-        let button = FBLoginButton()
-        button.permissions = ["email"]
-        return button
-    }()
+
+    @IBOutlet weak var loginButtonFb: FBLoginButton!
     
     var profileData = ProfileData()
+    var fbProfileData = ProfileData()
+    var check = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginButtonFb.delegate = self
+        loginButtonFb.permissions = ["email"]
         
-        view.addSubview(fbLoginButton)
-        fbLoginButton.center = view.center
-        fbLoginButton.delegate = self
-        
-        if let token = AccessToken.current {
+        if AccessToken.current != nil {
             fetchProfile()
-            print("TOKEN: \(token)")
         }
         
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
-
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        
     }
     
     func fetchProfile() {
@@ -50,22 +49,19 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, 
                 print("FETCH PROFILE ERROR: \(error!)")
                 return
             }
-            
             if let email = (result as AnyObject)["email"]! as? String {
-                self.profileData.email = email  + " Facebook"
+                self.fbProfileData.email = email
             }
             if let firstName = (result as AnyObject)["first_name"]! as? String {
-                self.profileData.givenName = firstName
+                self.fbProfileData.givenName = firstName
             }
             if let lastName = (result as AnyObject)["last_name"]! as? String {
-                self.profileData.familyName = lastName
+                self.fbProfileData.familyName = lastName
             }
             if let fullName = (result as AnyObject)["name"]! as? String {
-                self.profileData.fullName = fullName
-                self.profileData.system = "Facebook"
+                self.fbProfileData.fullName = fullName
+                self.fbProfileData.system = "Facebook"
             }
-            
-            
         }
     }
     
@@ -74,11 +70,17 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, 
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         print("completed login")
         fetchProfile()
+        check = "fb"
+        if fbProfileData.system == nil {
+            print("Don't get data ;( ")
+        } else {
+            print("Data fetched")
+        }
         performSegue(withIdentifier: "segue", sender: self)
     }
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        
+        print("Logged Out")
     }
     
     
@@ -87,28 +89,25 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, 
                 withError error: NSError!) {
         if (error == nil) {
             // Perform any operations on signed in user here.
-            // ...
         } else {
-            print("\(error.localizedDescription)")
+            print("google error \(error.localizedDescription)")
         }
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
               withError error: Error!) {
         if let error = error {
-            print("\(error.localizedDescription)")
+            print("google error \(error.localizedDescription)")
         } else {
-            // Perform any operations on signed in user here.
-//            profileData.userId = user.userID                  // For client-side use only!
-//            profileData.idToken = user.authentication.idToken // Safe to send to the server
             profileData.fullName = user.profile.name
             profileData.givenName = user.profile.givenName
             
             profileData.familyName = user.profile.familyName
-            profileData.email = user.profile.email  + " Google"
+            profileData.email = user.profile.email
             
             profileData.system = "Google"
-            // ...
+            check = "g"
+            
             performSegue(withIdentifier: "segue", sender: self)
         }
     }
@@ -116,7 +115,11 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segue" {
             let profileVC = segue.destination as! ProfileViewController
-            profileVC.profileInfo = profileData
+            if check == "fb" {
+                profileVC.profileInfo = fbProfileData
+            } else {
+                profileVC.profileInfo = profileData
+            }
         }
     }
 }

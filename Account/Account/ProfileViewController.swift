@@ -8,6 +8,10 @@
 
 import UIKit
 import GoogleSignIn
+import FacebookLogin
+import FacebookCore
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 
 class ProfileViewController: UIViewController {
@@ -31,9 +35,6 @@ class ProfileViewController: UIViewController {
         
         familyNameLabel.text = profileInfo.familyName
         givenNameLabel.text = profileInfo.givenName
-        
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -41,11 +42,20 @@ class ProfileViewController: UIViewController {
         if emailLabel.text == nil {
             emailLabel.text = "Connection Failed. Re-connect, please."
         }
+        if profileInfo.system == nil {
+            topTitleLabel.text = "Oops..."
+        } else {
+            topTitleLabel.text = "Your \(profileInfo.system!) Profile"
+        }
+
     }
     
     
     @IBAction func didTapSignOut(_ sender: AnyObject) {
+        let manager = LoginManager()
+        manager.logOut()
+        
         GIDSignIn.sharedInstance().signOut()
+        dismiss(animated: true, completion: nil)
     }
-
 }
