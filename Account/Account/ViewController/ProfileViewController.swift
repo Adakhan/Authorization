@@ -24,12 +24,12 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var familyNameLabel: UILabel!
     @IBOutlet weak var givenNameLabel: UILabel!
     
-
+    
     var profileInfo = ProfileData()
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         emailLabel.text = profileInfo.email
         fullNameLabel.text = profileInfo.fullName
         
@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        if emailLabel.text == nil {
+        if profileInfo.email == nil {
             emailLabel.text = "Connection Failed. Re-connect, please."
         }
         if profileInfo.system == nil {
@@ -47,11 +47,11 @@ class ProfileViewController: UIViewController {
         } else {
             topTitleLabel.text = "Your \(profileInfo.system!) Profile"
         }
-
     }
     
     
-    @IBAction func didTapSignOut(_ sender: AnyObject) {
+    @IBAction func didTapSignOut(_ sender: AnyObject)
+    {
         let manager = LoginManager()
         manager.logOut()
         

@@ -8,12 +8,13 @@
 
 import Foundation
 
-struct ProfileData {
-//    var userId: String?
-//    var idToken: String?
-    var system : String?
-    var fullName: String?
-    var givenName: String?
-    var familyName: String?
+struct ProfileData
+{
     var email: String?
+    var fullName: String?
+    
+    var familyName: String?
+    var givenName: String?
+    
+    var system : String?
 }
