@@ -12,6 +12,7 @@ import FacebookLogin
 import FacebookCore
 import FBSDKCoreKit
 import FBSDKLoginKit
+import FirebaseAuth
 
 class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, LoginButtonDelegate {
     
@@ -28,19 +29,18 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, 
         googleSetUp()
     }
     
-    //MARK: - SetUp functions
-
+    
+    //MARK: - SETUP Funcs
+    func googleSetUp() {
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+    }
     func FBSetUp() {
         if AccessToken.current != nil {
             loadData()
         }
         loginButtonFb.delegate = self
-        loginButtonFb.permissions = ["email"]
-    }
-    
-    func googleSetUp() {
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().delegate = self
+        loginButtonFb.permissions = ["email", "public_profile"]
     }
     
     func loadData() {
@@ -78,21 +78,26 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, 
         loadData()
         checkSystem = "fb"
         
-        if fbProfileData.system == nil {
-            print("Don't get data ;( ")
-        } else {
-            print("Data fetched")
+        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            // User is signed in
         }
         performSegue(withIdentifier: "segue", sender: self)
     }
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        //
     }
     
     
     //MARK: - GOOGLE Authorization
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
-                withError error: NSError!) {
+                withError error: NSError!)
+    {
         if (error == nil) {
             // Perform any operations on signed in user here.
         } else {
@@ -101,7 +106,19 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, 
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
-              withError error: Error!) {
+              withError error: Error!)
+    {
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            // User is signed in
+        }
+        
         if let error = error {
             print("google error \(error.localizedDescription)")
         } else {

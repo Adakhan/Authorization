@@ -12,6 +12,7 @@ import FacebookLogin
 import FacebookCore
 import FBSDKCoreKit
 import FBSDKLoginKit
+import FirebaseAuth
 
 
 class ProfileViewController: UIViewController {
@@ -23,7 +24,6 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var familyNameLabel: UILabel!
     @IBOutlet weak var givenNameLabel: UILabel!
-    
     
     var profileInfo = ProfileData()
     
@@ -39,23 +39,21 @@ class ProfileViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        if profileInfo.email == nil {
-            emailLabel.text = "Connection Failed. Re-connect, please."
-        }
+        
         if profileInfo.system == nil {
             topTitleLabel.text = "Oops..."
         } else {
             topTitleLabel.text = "Your \(profileInfo.system!) Profile"
+        }
+        if profileInfo.email == nil {
+            emailLabel.text = "Connection Failed. Re-connect, please."
         }
     }
     
     
     @IBAction func didTapSignOut(_ sender: AnyObject)
     {
-        let manager = LoginManager()
-        manager.logOut()
-        
-        GIDSignIn.sharedInstance().signOut()
+        ProfileManager.shared.profileLogout()
         dismiss(animated: true, completion: nil)
     }
 }

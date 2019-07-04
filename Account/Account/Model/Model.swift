@@ -12,9 +12,7 @@ struct ProfileData
 {
     var email: String?
     var fullName: String?
-    
     var familyName: String?
     var givenName: String?
-    
     var system : String?
 }

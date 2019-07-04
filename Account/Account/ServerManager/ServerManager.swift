@@ -12,6 +12,7 @@ import FacebookCore
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+
 class ServerManager {
     
     static let shared = ServerManager()
