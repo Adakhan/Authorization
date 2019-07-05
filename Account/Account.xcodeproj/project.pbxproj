@@ -14,6 +14,7 @@
 		FA478AAC22C36F370019AEBD /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA478AAB22C36F370019AEBD /* credentials.plist */; };
 		FA478AAF22C377A90019AEBD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA478AAE22C377A90019AEBD /* Model.swift */; };
 		FA478AB122C379FA0019AEBD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA478AB022C379FA0019AEBD /* ProfileViewController.swift */; };
+		FA66136322CF6A3000631C38 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA66136222CF6A3000631C38 /* Extension.swift */; };
 		FAEE85F322C2355300BC2A4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE85F222C2355300BC2A4D /* AppDelegate.swift */; };
 		FAEE85F522C2355300BC2A4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE85F422C2355300BC2A4D /* ViewController.swift */; };
 		FAEE85F822C2355300BC2A4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEE85F622C2355300BC2A4D /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 		FA478AAB22C36F370019AEBD /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		FA478AAE22C377A90019AEBD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		FA478AB022C379FA0019AEBD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FA66136222CF6A3000631C38 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		FAEE85EF22C2355300BC2A4D /* Account.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Account.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEE85F222C2355300BC2A4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAEE85F422C2355300BC2A4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		FA66136122CF69F900631C38 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				FA66136222CF6A3000631C38 /* Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		FAEE85E622C2355300BC2A4D = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +133,7 @@
 		FAEE85F122C2355300BC2A4D /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				FA66136122CF69F900631C38 /* Extension */,
 				FA0AF29322CE08F900BF58FE /* Services */,
 				FA0C99FB22C68632003AE9EF /* ServerManager */,
 				FA0C99FA22C68455003AE9EF /* ViewController */,
@@ -283,6 +294,7 @@
 			files = (
 				FA0C99FD22C6866B003AE9EF /* ServerManager.swift in Sources */,
 				FA0AF29522CE092600BF58FE /* ProfileManager.swift in Sources */,
+				FA66136322CF6A3000631C38 /* Extension.swift in Sources */,
 				FA478AAF22C377A90019AEBD /* Model.swift in Sources */,
 				FAEE85F522C2355300BC2A4D /* ViewController.swift in Sources */,
 				FA478AB122C379FA0019AEBD /* ProfileViewController.swift in Sources */,

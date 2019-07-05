@@ -6,6 +6,7 @@ target 'Account' do
   use_frameworks!
 
   # Pods for Account
+
  pod 'GoogleSignIn'
 
  pod 'FacebookCore'
@@ -14,4 +15,6 @@ target 'Account' do
 
  pod 'Firebase/Core'
  pod 'Firebase/Auth'
+ pod 'Firebase/Database'
+
 end

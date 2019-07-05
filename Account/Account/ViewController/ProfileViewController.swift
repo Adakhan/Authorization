@@ -42,11 +42,9 @@ class ProfileViewController: UIViewController {
         
         if profileInfo.system == nil {
             topTitleLabel.text = "Oops..."
+            emailLabel.text = "Connection Failed. Re-connect, please."
         } else {
             topTitleLabel.text = "Your \(profileInfo.system!) Profile"
-        }
-        if profileInfo.email == nil {
-            emailLabel.text = "Connection Failed. Re-connect, please."
         }
     }
     
