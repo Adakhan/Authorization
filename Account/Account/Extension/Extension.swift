@@ -24,6 +24,7 @@ extension ViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
     func showRegistratedAlert() {
         let alert = UIAlertController(title: "Account Created", message: "Your account succesfully created!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
