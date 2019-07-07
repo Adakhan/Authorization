@@ -18,7 +18,6 @@ import FirebaseDatabase
 class ViewController: UIViewController {
     
     
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
@@ -30,6 +29,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var googleLoginButton: GIDSignInButton!
     @IBOutlet weak var switchButton: UIButton!
 
+    @IBOutlet weak var resetButtonOutlet: UIButton!
     
     var gProfileData = ProfileData()
     var fbProfileData = ProfileData()
@@ -39,19 +39,21 @@ class ViewController: UIViewController {
     var signUpOrIn: Bool = false {
         willSet {
             if newValue {
-                titleLabel.text = "Sign Up"
+                self.title = "Sign Up"
                 firstNameField.isHidden = false
                 lastNameField.isHidden = false
                 customFBButtonOutlet.isHidden = true
                 googleLoginButton.isHidden = true
                 switchButton.setTitle("Sign In", for: .normal)
+                resetButtonOutlet.isHidden = true
             } else {
-                titleLabel.text = "Sign In"
+                self.title = "Sign In"
                 firstNameField.isHidden = true
                 lastNameField.isHidden = true
                 customFBButtonOutlet.isHidden = false
                 googleLoginButton.isHidden = false
                 switchButton.setTitle("Sign Up", for: .normal)
+                resetButtonOutlet.isHidden = false
             }
         }
     }
@@ -150,6 +152,11 @@ extension ViewController: UITextFieldDelegate {
                                 ref.child(result.user.uid).updateChildValues(["email" : email!,"full_name" : fullName,"first_name" : firstName!, "last_name" : lastName!])
                                 self.showRegistratedAlert()
                             }
+                        }
+                    }
+                    Auth.auth().currentUser?.sendEmailVerification { (error) in
+                        if error == nil {
+                            self.showVerificationAlert()
                         }
                     }
                 } else {

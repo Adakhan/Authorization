@@ -17,7 +17,6 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var topTitleLabel: UILabel!
     
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var fullNameLabel: UILabel!
@@ -41,10 +40,10 @@ class ProfileViewController: UIViewController {
         super.viewDidAppear(true)
         
         if profileInfo.system == nil {
-            topTitleLabel.text = "Oops..."
+            self.title = "Oops..."
             emailLabel.text = "Connection Failed. Re-connect, please."
         } else {
-            topTitleLabel.text = "Your \(profileInfo.system!) Profile"
+            self.title = "Your \(profileInfo.system!) Profile"
         }
     }
     

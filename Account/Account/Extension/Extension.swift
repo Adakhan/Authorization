@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension ViewController {
+extension UIViewController {
     
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
@@ -27,6 +27,12 @@ extension ViewController {
     
     func showRegistratedAlert() {
         let alert = UIAlertController(title: "Account Created", message: "Your account succesfully created!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+ 
+    func showResetPasswordAlert() {
+        let alert = UIAlertController(title: "Password sent", message: "Email sent. Please check your mail.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
