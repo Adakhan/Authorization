@@ -21,14 +21,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
-    
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var orLabel: UILabel!
 
     @IBOutlet weak var customFBButtonOutlet: UIButton!
     @IBOutlet weak var googleLoginButton: GIDSignInButton!
+    @IBOutlet weak var phoneAuthButton: UIButton!
+    
     @IBOutlet weak var switchButton: UIButton!
-
     @IBOutlet weak var resetButtonOutlet: UIButton!
     
     var gProfileData = ProfileData()
@@ -40,20 +39,12 @@ class ViewController: UIViewController {
         willSet {
             if newValue {
                 self.title = "Sign Up"
-                firstNameField.isHidden = false
-                lastNameField.isHidden = false
-                customFBButtonOutlet.isHidden = true
-                googleLoginButton.isHidden = true
+                changeViewState(newValue)
                 switchButton.setTitle("Sign In", for: .normal)
-                resetButtonOutlet.isHidden = true
             } else {
                 self.title = "Sign In"
-                firstNameField.isHidden = true
-                lastNameField.isHidden = true
-                customFBButtonOutlet.isHidden = false
-                googleLoginButton.isHidden = false
+                changeViewState(newValue)
                 switchButton.setTitle("Sign Up", for: .normal)
-                resetButtonOutlet.isHidden = false
             }
         }
     }
@@ -79,35 +70,66 @@ class ViewController: UIViewController {
     }
     
     
-    
-    @IBAction func fbButton(_ sender: Any) {
-        let manager = LoginManager()
-        manager.logIn(permissions: ["email", "public_profile"], from: self) { (result, error) in
-            self.loadFBData()
-            self.checkSystem = "fb"
-            
-            let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-            Auth.auth().signIn(with: credential) { (authResult, error) in
-                if let error = error {
-                    print(error)
-                    return
-                }
-                // User is signed in
-            }
-            self.performSegue(withIdentifier: "segue", sender: self)
-        }
+    //Text fields funcs
+    func changeViewState(_ state: Bool) -> Void {
+        firstNameField.isHidden = !state
+        lastNameField.isHidden = !state
+        customFBButtonOutlet.isHidden = state
+        googleLoginButton.isHidden = state
+        phoneAuthButton.isHidden = state
+        resetButtonOutlet.isHidden = state
+        cleanTextFields()
     }
     
-
+    func cleanTextFields() {
+        self.emailField.text = ""
+        self.firstNameField.text = ""
+        self.lastNameField.text = ""
+        self.passwordField.text = ""
+    }
     
+    
+    //MARK: - Buttons
     @IBAction func switchButtonAction(_ sender: Any) {
         signUpOrIn = !signUpOrIn
     }
     
+    
+
+    //Custom FB button
+    @IBAction func fbButton(_ sender: Any) {
+        let loginManager = LoginManager()
+        loginManager.logIn(permissions: ["public_profile", "email"], from: self) { (result, error) in
+            if
+                let error = error {
+                print("Failed to login: \(error.localizedDescription)")
+            } else {
+                self.loadFBData()
+                self.checkSystem = "fb"
+            }
+            
+            guard let accessToken = AccessToken.current else {
+                print("Failed to get access token")
+                return
+            }
+            
+            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+            Auth.auth().signIn(with: credential) { (result, error) in
+                if
+                    let error = error {
+                    print("Login error: \(error.localizedDescription)")
+                }
+                self.performSegue(withIdentifier: "segue", sender: self)
+            }
+        }
+    }
+    
+    
     //MARK: - Transfer data to ProfileVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segue" {
-            let profileVC = segue.destination as! ProfileViewController
+            let nav = segue.destination as! UINavigationController
+            let profileVC = nav.topViewController as! ProfileViewController
             if checkSystem == "fb" {
                 profileVC.profileInfo = fbProfileData
             } else if checkSystem == "g" {
@@ -121,12 +143,13 @@ class ViewController: UIViewController {
 }
 
 
+//MARK: - Email Firebase Authorization Text Fields
 extension ViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
         let email = emailField.text
         let firstName = firstNameField.text
-        
         let lastName = lastNameField.text
         let password = passwordField.text
         let fullName = "\(firstName!) \(lastName!)"
@@ -150,13 +173,9 @@ extension ViewController: UITextFieldDelegate {
                         if error == nil {
                             if let result = result {
                                 ref.child(result.user.uid).updateChildValues(["email" : email!,"full_name" : fullName,"first_name" : firstName!, "last_name" : lastName!])
-                                self.showRegistratedAlert()
+                                self.showRegistrationAlert()
+                                self.cleanTextFields()
                             }
-                        }
-                    }
-                    Auth.auth().currentUser?.sendEmailVerification { (error) in
-                        if error == nil {
-                            self.showVerificationAlert()
                         }
                     }
                 } else {
@@ -184,6 +203,7 @@ extension ViewController: UITextFieldDelegate {
                                     self.fireProfileData.system = "Firebase"
                                     self.checkSystem = "Firebase"
                                     self.performSegue(withIdentifier: "segue", sender: self)
+                                    self.cleanTextFields()
                                 })
                             }
                         }
@@ -216,20 +236,20 @@ extension ViewController: GIDSignInUIDelegate, GIDSignInDelegate{
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
               withError error: Error!)
     {
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
-        Auth.auth().signIn(with: credential) { (authResult, error) in
-            if let error = error {
-                print(error)
-                return
-            }
-            // User is signed in
-        }
-        
         if let error = error {
             print("google error \(error.localizedDescription)")
         } else {
+            
+            guard let authentication = user.authentication else { return }
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                           accessToken: authentication.accessToken)
+            Auth.auth().signIn(with: credential) { (authResult, error) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                // User is signed in
+            }
             gProfileData.fullName = user.profile.name
             gProfileData.givenName = user.profile.givenName
             
@@ -281,4 +301,5 @@ extension ViewController: LoginButtonDelegate {
             self.fbProfileData.system = "Facebook"
         }
     }
+    
 }

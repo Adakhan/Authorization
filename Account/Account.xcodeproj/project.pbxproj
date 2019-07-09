@@ -8,14 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		EF1A3A8750FA708E686BC1E0 /* Pods_Account.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C44D6DC2D889DC27B274D39 /* Pods_Account.framework */; };
-		FA0AA53B22CCDFB90099DF69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA0AA53A22CCDFB90099DF69 /* GoogleService-Info.plist */; };
 		FA0AF29522CE092600BF58FE /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0AF29422CE092600BF58FE /* ProfileManager.swift */; };
 		FA0C99FD22C6866B003AE9EF /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0C99FC22C6866B003AE9EF /* ServerManager.swift */; };
+		FA10BDDE22D34911001F238E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA10BDDD22D34910001F238E /* GoogleService-Info.plist */; };
+		FA10BDE122D3A2F0001F238E /* PhoneVerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10BDE022D3A2F0001F238E /* PhoneVerifyViewController.swift */; };
 		FA23DE5822D242CE0038EB07 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA23DE5722D242CE0038EB07 /* ResetPasswordViewController.swift */; };
 		FA478AAC22C36F370019AEBD /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA478AAB22C36F370019AEBD /* credentials.plist */; };
 		FA478AAF22C377A90019AEBD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA478AAE22C377A90019AEBD /* Model.swift */; };
 		FA478AB122C379FA0019AEBD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA478AB022C379FA0019AEBD /* ProfileViewController.swift */; };
 		FA66136322CF6A3000631C38 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA66136222CF6A3000631C38 /* Extension.swift */; };
+		FAA364FF22D4C9080062E7FE /* PhoneLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA364FE22D4C9080062E7FE /* PhoneLogInViewController.swift */; };
 		FAEE85F322C2355300BC2A4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE85F222C2355300BC2A4D /* AppDelegate.swift */; };
 		FAEE85F522C2355300BC2A4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE85F422C2355300BC2A4D /* ViewController.swift */; };
 		FAEE85F822C2355300BC2A4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEE85F622C2355300BC2A4D /* Main.storyboard */; };
@@ -27,14 +29,17 @@
 		4C44D6DC2D889DC27B274D39 /* Pods_Account.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Account.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64428A18F88333084F9B4B34 /* Pods-Account.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Account.debug.xcconfig"; path = "Target Support Files/Pods-Account/Pods-Account.debug.xcconfig"; sourceTree = "<group>"; };
 		CC3B6C2B5E2FDD5BC830CFED /* Pods-Account.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Account.release.xcconfig"; path = "Target Support Files/Pods-Account/Pods-Account.release.xcconfig"; sourceTree = "<group>"; };
-		FA0AA53A22CCDFB90099DF69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA0AF29422CE092600BF58FE /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		FA0C99FC22C6866B003AE9EF /* ServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
+		FA10BDDD22D34910001F238E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FA10BDDF22D36DFC001F238E /* Account.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Account.entitlements; sourceTree = "<group>"; };
+		FA10BDE022D3A2F0001F238E /* PhoneVerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerifyViewController.swift; sourceTree = "<group>"; };
 		FA23DE5722D242CE0038EB07 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		FA478AAB22C36F370019AEBD /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		FA478AAE22C377A90019AEBD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		FA478AB022C379FA0019AEBD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FA66136222CF6A3000631C38 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		FAA364FE22D4C9080062E7FE /* PhoneLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLogInViewController.swift; sourceTree = "<group>"; };
 		FAEE85EF22C2355300BC2A4D /* Account.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Account.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEE85F222C2355300BC2A4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAEE85F422C2355300BC2A4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +92,8 @@
 				FA478AB022C379FA0019AEBD /* ProfileViewController.swift */,
 				FAEE85F422C2355300BC2A4D /* ViewController.swift */,
 				FA23DE5722D242CE0038EB07 /* ResetPasswordViewController.swift */,
+				FA10BDE022D3A2F0001F238E /* PhoneVerifyViewController.swift */,
+				FAA364FE22D4C9080062E7FE /* PhoneLogInViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -136,6 +143,7 @@
 		FAEE85F122C2355300BC2A4D /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				FA10BDDF22D36DFC001F238E /* Account.entitlements */,
 				FA66136122CF69F900631C38 /* Extension */,
 				FA0AF29322CE08F900BF58FE /* Services */,
 				FA0C99FB22C68632003AE9EF /* ServerManager */,
@@ -145,7 +153,7 @@
 				FAEE85F622C2355300BC2A4D /* Main.storyboard */,
 				FAEE85F922C2355800BC2A4D /* Assets.xcassets */,
 				FAEE85FB22C2355800BC2A4D /* LaunchScreen.storyboard */,
-				FA0AA53A22CCDFB90099DF69 /* GoogleService-Info.plist */,
+				FA10BDDD22D34910001F238E /* GoogleService-Info.plist */,
 				FA478AAB22C36F370019AEBD /* credentials.plist */,
 				FAEE85FE22C2355800BC2A4D /* Info.plist */,
 			);
@@ -195,6 +203,14 @@
 				TargetAttributes = {
 					FAEE85EE22C2355300BC2A4D = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -222,8 +238,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAEE85FD22C2355800BC2A4D /* LaunchScreen.storyboard in Resources */,
+				FA10BDDE22D34911001F238E /* GoogleService-Info.plist in Resources */,
 				FA478AAC22C36F370019AEBD /* credentials.plist in Resources */,
-				FA0AA53B22CCDFB90099DF69 /* GoogleService-Info.plist in Resources */,
 				FAEE85FA22C2355800BC2A4D /* Assets.xcassets in Resources */,
 				FAEE85F822C2355300BC2A4D /* Main.storyboard in Resources */,
 			);
@@ -303,6 +319,8 @@
 				FAEE85F522C2355300BC2A4D /* ViewController.swift in Sources */,
 				FA478AB122C379FA0019AEBD /* ProfileViewController.swift in Sources */,
 				FAEE85F322C2355300BC2A4D /* AppDelegate.swift in Sources */,
+				FA10BDE122D3A2F0001F238E /* PhoneVerifyViewController.swift in Sources */,
+				FAA364FF22D4C9080062E7FE /* PhoneLogInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,14 +467,15 @@
 			baseConfigurationReference = 64428A18F88333084F9B4B34 /* Pods-Account.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Account/Account.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7CR5W37ZCG;
+				DEVELOPMENT_TEAM = U5DCDBG2W2;
 				INFOPLIST_FILE = Account/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Account;
+				PRODUCT_BUNDLE_IDENTIFIER = com.neobis.Account;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -468,14 +487,15 @@
 			baseConfigurationReference = CC3B6C2B5E2FDD5BC830CFED /* Pods-Account.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Account/Account.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7CR5W37ZCG;
+				DEVELOPMENT_TEAM = U5DCDBG2W2;
 				INFOPLIST_FILE = Account/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Account;
+				PRODUCT_BUNDLE_IDENTIFIER = com.neobis.Account;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -20,7 +20,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         emailTextField.becomeFirstResponder()
         self.hideKeyboardWhenTappedAround()
     }
-    
+
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let email = emailTextField.text
@@ -29,6 +29,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
                 if error == nil {
                     self.emailTextField.resignFirstResponder()
                     self.showResetPasswordAlert()
+                    self.emailTextField.text = ""
                 }
             }
             

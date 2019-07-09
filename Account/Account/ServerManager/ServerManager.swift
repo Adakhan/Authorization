@@ -19,7 +19,6 @@ class ServerManager {
     
     func fetchProfile( completion: @escaping (GraphRequestConnection?, Any?, Error?) -> Void ) {
         GraphRequest(graphPath: "/me", parameters: ["fields" : "email, first_name, last_name, name"], httpMethod: .get).start { (connection, result, error) in
-            
             DispatchQueue.main.async {
                 completion(connection, result, error)
             }

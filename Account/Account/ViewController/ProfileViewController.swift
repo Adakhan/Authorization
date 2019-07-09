@@ -20,25 +20,24 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var fullNameLabel: UILabel!
-    
     @IBOutlet weak var familyNameLabel: UILabel!
     @IBOutlet weak var givenNameLabel: UILabel!
     
-    var profileInfo = ProfileData()
     
+    var profileInfo = ProfileData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         emailLabel.text = profileInfo.email
         fullNameLabel.text = profileInfo.fullName
-        
         familyNameLabel.text = profileInfo.familyName
         givenNameLabel.text = profileInfo.givenName
     }
     
+    
+    // Func checks connection
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
         if profileInfo.system == nil {
             self.title = "Oops..."
             emailLabel.text = "Connection Failed. Re-connect, please."
@@ -47,10 +46,11 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    
-    @IBAction func didTapSignOut(_ sender: AnyObject)
-    {
+    //Sign out button
+    //Will sign out from all authorizations
+    @IBAction func didTapSignOut(_ sender: AnyObject) {
         ProfileManager.shared.profileLogout()
-        dismiss(animated: true, completion: nil)
+        self.backToMainView()
     }
+    
 }

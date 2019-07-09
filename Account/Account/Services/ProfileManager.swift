@@ -13,13 +13,13 @@ import FacebookCore
 import FBSDKCoreKit
 import FBSDKLoginKit
 import FirebaseAuth
+import UIKit
 
 class ProfileManager {
     
     static let shared = ProfileManager()
     
-    func profileLogout()
-    {
+    func profileLogout() {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
