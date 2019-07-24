@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var customFBButtonOutlet: UIButton!
     @IBOutlet weak var googleLoginButton: GIDSignInButton!
     @IBOutlet weak var phoneAuthButton: UIButton!
+    @IBOutlet weak var firebaseLoginButton: UIButton!
     
     @IBOutlet weak var switchButton: UIButton!
     @IBOutlet weak var resetButtonOutlet: UIButton!
@@ -40,10 +41,12 @@ class ViewController: UIViewController {
             if newValue {
                 self.title = "Sign Up"
                 changeViewState(newValue)
+                firebaseLoginButton.setTitle("Sign Up with Firebase", for: .normal)
                 switchButton.setTitle("Sign In", for: .normal)
             } else {
                 self.title = "Sign In"
                 changeViewState(newValue)
+                firebaseLoginButton.setTitle("Sign In with Firebase", for: .normal)
                 switchButton.setTitle("Sign Up", for: .normal)
             }
         }
@@ -95,6 +98,64 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func firebaseLoginButtonAction(_ sender: Any) {
+        let email = emailField.text
+        let firstName = firstNameField.text
+        let lastName = lastNameField.text
+        let password = passwordField.text
+        let fullName = "\(firstName!) \(lastName!)"
+        
+        let ref = Database.database().reference().child("users")
+
+        if signUpOrIn {
+            if (!email!.isEmpty) && (!firstName!.isEmpty) && (!lastName!.isEmpty) && (!password!.isEmpty) {
+                Auth.auth().createUser(withEmail: email!, password: password!) { (result, error) in
+                    if error == nil {
+                        if let result = result {
+                            ref.child(result.user.uid).updateChildValues(["email" : email!,"full_name" : fullName,"first_name" : firstName!, "last_name" : lastName!])
+                            self.showRegistrationAlert()
+                            self.signUpOrIn = !self.signUpOrIn
+                        }
+                    } else {
+                        print(error ?? "")
+                    }
+                }
+            } else {
+                self.showErrorAlert()
+            }
+
+        } else {
+            
+            if (!email!.isEmpty) && (!password!.isEmpty) {
+                Auth.auth().signIn(withEmail: email!, password: password!) { (result, error) in
+                    if error == nil {
+                        if let user = Auth.auth().currentUser {
+                            ref.child((result?.user.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                                if !snapshot.exists() { return }
+                                
+                                self.fireProfileData.email = user.email
+                                self.fireProfileData.fullName = snapshot.childSnapshot(forPath: "full_name").value as? String
+                                self.fireProfileData.givenName = snapshot.childSnapshot(forPath: "first_name").value as? String
+                                self.fireProfileData.familyName = snapshot.childSnapshot(forPath: "last_name").value as? String
+                                
+                                self.fireProfileData.system = "Firebase"
+                                self.checkSystem = "Firebase"
+                                self.performSegue(withIdentifier: "segue", sender: self)
+                                self.cleanTextFields()
+                            })
+                        }
+                    } else {
+                        print(error ?? "")
+                    }
+                }
+            } else {
+                self.showErrorAlert()
+            }
+        }
+        
+    }
+    
+    
 
     //Custom FB button
     @IBAction func fbButton(_ sender: Any) {
@@ -125,6 +186,7 @@ class ViewController: UIViewController {
     }
     
     
+    
     //MARK: - Transfer data to ProfileVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segue" {
@@ -148,14 +210,7 @@ extension ViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
-        let email = emailField.text
-        let firstName = firstNameField.text
-        let lastName = lastNameField.text
-        let password = passwordField.text
-        let fullName = "\(firstName!) \(lastName!)"
-        
-        let ref = Database.database().reference().child("users")
-        
+    
         if signUpOrIn {
             if textField == emailField {
                 textField.resignFirstResponder()
@@ -168,19 +223,6 @@ extension ViewController: UITextFieldDelegate {
                 passwordField.becomeFirstResponder()
             } else if textField == passwordField {
                 textField.resignFirstResponder()
-                if (!email!.isEmpty) && (!firstName!.isEmpty) && (!lastName!.isEmpty) && (!password!.isEmpty) {
-                    Auth.auth().createUser(withEmail: email!, password: password!) { (result, error) in
-                        if error == nil {
-                            if let result = result {
-                                ref.child(result.user.uid).updateChildValues(["email" : email!,"full_name" : fullName,"first_name" : firstName!, "last_name" : lastName!])
-                                self.showRegistrationAlert()
-                                self.cleanTextFields()
-                            }
-                        }
-                    }
-                } else {
-                    self.showErrorAlert()
-                }
             }
         } else {
             if textField == emailField {
@@ -188,29 +230,6 @@ extension ViewController: UITextFieldDelegate {
                 passwordField.becomeFirstResponder()
             } else if textField == passwordField {
                 textField.resignFirstResponder()
-                if (!email!.isEmpty) && (!password!.isEmpty) {
-                    Auth.auth().signIn(withEmail: email!, password: password!) { (result, error) in
-                        if error == nil {
-                            if let user = Auth.auth().currentUser {
-                                ref.child((result?.user.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
-                                    if !snapshot.exists() { return }
-                                    
-                                    self.fireProfileData.email = user.email
-                                    self.fireProfileData.fullName = snapshot.childSnapshot(forPath: "full_name").value as? String
-                                    self.fireProfileData.givenName = snapshot.childSnapshot(forPath: "first_name").value as? String
-                                    self.fireProfileData.familyName = snapshot.childSnapshot(forPath: "last_name").value as? String
-                                    
-                                    self.fireProfileData.system = "Firebase"
-                                    self.checkSystem = "Firebase"
-                                    self.performSegue(withIdentifier: "segue", sender: self)
-                                    self.cleanTextFields()
-                                })
-                            }
-                        }
-                    }
-                } else {
-                    self.showErrorAlert()
-                }
             }
         }
         return true

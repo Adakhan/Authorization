@@ -30,7 +30,7 @@
 		64428A18F88333084F9B4B34 /* Pods-Account.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Account.debug.xcconfig"; path = "Target Support Files/Pods-Account/Pods-Account.debug.xcconfig"; sourceTree = "<group>"; };
 		CC3B6C2B5E2FDD5BC830CFED /* Pods-Account.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Account.release.xcconfig"; path = "Target Support Files/Pods-Account/Pods-Account.release.xcconfig"; sourceTree = "<group>"; };
 		FA0AF29422CE092600BF58FE /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
-		FA0C99FC22C6866B003AE9EF /* ServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
+		FA0C99FC22C6866B003AE9EF /* ServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServerManager.swift; path = ../ServerManager/ServerManager.swift; sourceTree = "<group>"; };
 		FA10BDDD22D34910001F238E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA10BDDF22D36DFC001F238E /* Account.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Account.entitlements; sourceTree = "<group>"; };
 		FA10BDE022D3A2F0001F238E /* PhoneVerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerifyViewController.swift; sourceTree = "<group>"; };
@@ -81,29 +81,20 @@
 		FA0AF29322CE08F900BF58FE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				FA66136122CF69F900631C38 /* Extension */,
 				FA0AF29422CE092600BF58FE /* ProfileManager.swift */,
+				FA0C99FC22C6866B003AE9EF /* ServerManager.swift */,
+				FACC0D2A22E830C800B451C6 /* Controller */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		FA0C99FA22C68455003AE9EF /* ViewController */ = {
+		FA0C99FA22C68455003AE9EF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FA478AB022C379FA0019AEBD /* ProfileViewController.swift */,
-				FAEE85F422C2355300BC2A4D /* ViewController.swift */,
-				FA23DE5722D242CE0038EB07 /* ResetPasswordViewController.swift */,
-				FA10BDE022D3A2F0001F238E /* PhoneVerifyViewController.swift */,
-				FAA364FE22D4C9080062E7FE /* PhoneLogInViewController.swift */,
+				FACC0D2922E82EA900B451C6 /* Storyboard */,
 			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		FA0C99FB22C68632003AE9EF /* ServerManager */ = {
-			isa = PBXGroup;
-			children = (
-				FA0C99FC22C6866B003AE9EF /* ServerManager.swift */,
-			);
-			path = ServerManager;
+			path = View;
 			sourceTree = "<group>";
 		};
 		FA478AAD22C377970019AEBD /* Model */ = {
@@ -119,7 +110,29 @@
 			children = (
 				FA66136222CF6A3000631C38 /* Extension.swift */,
 			);
-			path = Extension;
+			name = Extension;
+			path = ../Extension;
+			sourceTree = "<group>";
+		};
+		FACC0D2922E82EA900B451C6 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				FAEE85F622C2355300BC2A4D /* Main.storyboard */,
+				FAEE85FB22C2355800BC2A4D /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		FACC0D2A22E830C800B451C6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA10BDE022D3A2F0001F238E /* PhoneVerifyViewController.swift */,
+				FA478AB022C379FA0019AEBD /* ProfileViewController.swift */,
+				FA23DE5722D242CE0038EB07 /* ResetPasswordViewController.swift */,
+				FAEE85F422C2355300BC2A4D /* ViewController.swift */,
+				FAA364FE22D4C9080062E7FE /* PhoneLogInViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		FAEE85E622C2355300BC2A4D = {
@@ -144,15 +157,11 @@
 			isa = PBXGroup;
 			children = (
 				FA10BDDF22D36DFC001F238E /* Account.entitlements */,
-				FA66136122CF69F900631C38 /* Extension */,
 				FA0AF29322CE08F900BF58FE /* Services */,
-				FA0C99FB22C68632003AE9EF /* ServerManager */,
-				FA0C99FA22C68455003AE9EF /* ViewController */,
+				FA0C99FA22C68455003AE9EF /* View */,
 				FA478AAD22C377970019AEBD /* Model */,
 				FAEE860422C2356C00BC2A4D /* AppDelegate */,
-				FAEE85F622C2355300BC2A4D /* Main.storyboard */,
 				FAEE85F922C2355800BC2A4D /* Assets.xcassets */,
-				FAEE85FB22C2355800BC2A4D /* LaunchScreen.storyboard */,
 				FA10BDDD22D34910001F238E /* GoogleService-Info.plist */,
 				FA478AAB22C36F370019AEBD /* credentials.plist */,
 				FAEE85FE22C2355800BC2A4D /* Info.plist */,
