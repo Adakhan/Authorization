@@ -41,6 +41,21 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    func showProblemPasswordAlert() {
+        let alert = UIAlertController(title: "The password is too short", message: "Password must contain at least 6 symbols.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showAuthError(_ message: String) {
+        let str = message.cleanStr(suffixValues: 44, prefixValues: 122)
+        
+        let alert = UIAlertController(title: "Authorization error!", message: str, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
     // Move View to initial View
     // Part of sign out button
     func backToMainView() {
@@ -48,4 +63,15 @@ extension UIViewController {
         self.navigationController?.present(vc!, animated: true, completion: nil)
     }
     
+}
+
+extension String {
+    
+    func cleanStr( suffixValues suffix: Int, prefixValues prefix: Int ) -> String {
+        let str = self
+        str.dropLast(suffix)
+        str.dropFirst(prefix)
+        return str
+    }
+
 }

@@ -117,7 +117,7 @@ class ViewController: UIViewController {
                             self.signUpOrIn = !self.signUpOrIn
                         }
                     } else {
-                        print(error ?? "")
+                        self.showAuthError(error!.localizedDescription)
                     }
                 }
             } else {
@@ -145,12 +145,16 @@ class ViewController: UIViewController {
                             })
                         }
                     } else {
-                        print(error ?? "")
+                        self.showAuthError(error!.localizedDescription)
                     }
                 }
             } else {
                 self.showErrorAlert()
             }
+        }
+        
+        if password!.count < 6 {
+            showProblemPasswordAlert()
         }
         
     }
